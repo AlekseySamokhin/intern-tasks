@@ -10,7 +10,7 @@ const Task3 = () => {
     return elementWidth;
   }, [elementRef]);
 
-  console.log(width);
+  console.log(elementRef);
 
   const handleButtonClick = () => {
     if (width >= 100) {
