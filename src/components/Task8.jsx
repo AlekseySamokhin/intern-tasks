@@ -1,34 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Task8 = (props) => {
   const [userId, setUserId] = React.useState(1);
   const [doRequest, setDoRequest] = React.useState(false);
 
-  if (doRequest) {
-    fakeApi(userId)
-      .then((result) => {
-        setUserId(result);
-      })
-      .catch((err) => {
-        setUserId(1);
-      });
-  };
+  useEffect(() => {
+    if (doRequest) {
+      fakeApi(userId)
+        .then((result) => {
+          setUserId(result);
+        })
+        .catch((err) => {
+          setUserId(1);
+        });
+    }
+  }, [doRequest, userId]);
 
   const startFetchId = () => {
-    setDoRequest(true);
-  }
+    setDoRequest((prevState) => !prevState);
+  };
 
   return (
     <>
-    <h1>User id is {userId}</h1>
-    <button onClick={startFetchId}>Fetch Id</button>
-    
+      <h1>User id is {userId}</h1>
+      <button onClick={startFetchId}>Fetch Id</button>
     </>
-  )
+  );
 };
 
 function fakeApi(id) {
-  console.log("Api fired");
+  console.log('Api fired');
 
   return new Promise((res) => {
     setTimeout(() => {
@@ -37,5 +38,4 @@ function fakeApi(id) {
   });
 }
 
-
-export default Task8
+export default Task8;

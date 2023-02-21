@@ -17,8 +17,8 @@ function App() {
       {/* <Task4 /> */}
       {/* <Task5 /> */}
       {/* <Task6 /> */}
-      <Task7 />
-      {/* <Task8 /> */}
+      {/* <Task7 /> */}
+      <Task8 />
     </div>
   );
 }
