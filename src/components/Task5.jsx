@@ -9,7 +9,6 @@ const fakeList = [
 
 const Task5 = () => {
   const [list, setList] = React.useState(fakeList);
-  const [flag, setFlag] = React.useState(false);
 
   const removeItemFromList = (value) => {
     const filteredList = list.filter((i) => i.id !== value);
@@ -19,16 +18,13 @@ const Task5 = () => {
   return (
     <div>
       <ul>
-        {list.map((item, idx) => {
+        {list.map((item) => {
           return (
-            <ListItem
-              flag={flag}
-              setFlag={setFlag}
-              key={idx}
-              color={item.color}
-              remove={removeItemFromList}
-              id={item.id}
-            ></ListItem>
+            <ListItem key={item.id} color={item.color}>
+              <button onClick={() => removeItemFromList(item.id)}>
+                Remove Item
+              </button>
+            </ListItem>
           );
         })}
       </ul>
@@ -37,16 +33,10 @@ const Task5 = () => {
 };
 
 const ListItem = (props) => {
-  const [isColored, setIsColored] = React.useState(props.flag);
+  const [isColored, setIsColored] = React.useState(false);
 
   const toggleColorStatus = () => {
     setIsColored(!isColored);
-  };
-
-  const handlerRemoveItemFromList = (id) => {
-    props.remove(id);
-
-    setIsColored(false);
   };
 
   return (
@@ -57,9 +47,7 @@ const ListItem = (props) => {
     >
       <p>color will be - {props.color}</p>
       <button onClick={toggleColorStatus}>Set Color</button>
-      <button onClick={() => handlerRemoveItemFromList(props.id)}>
-        Remove Item
-      </button>
+      {props.children}
     </div>
   );
 };
