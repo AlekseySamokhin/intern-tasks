@@ -16,7 +16,7 @@ const Task6 = (props) => {
     }
   }, []);
 
-  return remoteId && <h1>ID is {remoteId}</h1>;
+  return remoteId ? <h1>ID is {remoteId}</h1> : <h1>Loading...</h1>;
 };
 
 function fakeApi(id) {
