@@ -14,6 +14,8 @@ const Task5 = () => {
   const removeItemFromList = (value) => {
     const filteredList = list.filter((i) => i.id !== value);
     setList(filteredList);
+
+    setFlag(false);
   };
 
   return (

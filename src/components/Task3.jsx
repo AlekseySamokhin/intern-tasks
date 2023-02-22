@@ -1,16 +1,18 @@
-import { useMemo } from 'react';
+import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import styles from './Task3.module.scss';
 
+// Поменял хук useMemo на useEffect, так как нам нужно дождаться пока наш комнонет отрисуется в DOM.
+// useMemo срабатывает до вмонтирования в DOM.
 const Task3 = () => {
-  const elementRef = useRef(0);
+  const [width, setWidth] = useState('');
+  const elementRef = useRef();
 
-  const width = useMemo(() => {
-    const elementWidth = elementRef.current.clientWidth;
-    return elementWidth;
+  useEffect(() => {
+    const elementWidth = elementRef;
+
+    setWidth(elementWidth.current.clientWidth);
   }, [elementRef]);
-
-  console.log(elementRef);
 
   const handleButtonClick = () => {
     if (width >= 100) {
