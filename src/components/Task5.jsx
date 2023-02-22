@@ -14,8 +14,6 @@ const Task5 = () => {
   const removeItemFromList = (value) => {
     const filteredList = list.filter((i) => i.id !== value);
     setList(filteredList);
-
-    setFlag(false);
   };
 
   return (
@@ -28,11 +26,9 @@ const Task5 = () => {
               setFlag={setFlag}
               key={idx}
               color={item.color}
-            >
-              <button onClick={() => removeItemFromList(item.id)}>
-                Remove Item
-              </button>
-            </ListItem>
+              remove={removeItemFromList}
+              id={item.id}
+            ></ListItem>
           );
         })}
       </ul>
@@ -47,6 +43,12 @@ const ListItem = (props) => {
     setIsColored(!isColored);
   };
 
+  const handlerRemoveItemFromList = (id) => {
+    props.remove(id);
+
+    setIsColored(false);
+  };
+
   return (
     <div
       style={{
@@ -55,7 +57,9 @@ const ListItem = (props) => {
     >
       <p>color will be - {props.color}</p>
       <button onClick={toggleColorStatus}>Set Color</button>
-      {props.children}
+      <button onClick={() => handlerRemoveItemFromList(props.id)}>
+        Remove Item
+      </button>
     </div>
   );
 };
