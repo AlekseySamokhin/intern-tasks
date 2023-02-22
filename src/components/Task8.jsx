@@ -5,19 +5,31 @@ const Task8 = (props) => {
   const [doRequest, setDoRequest] = React.useState(false);
 
   useEffect(() => {
-    if (doRequest) {
-      fakeApi(userId)
-        .then((result) => {
-          setUserId(result);
-        })
-        .catch((err) => {
-          setUserId(1);
-        });
+    if (!doRequest) return;
+
+    try {
+      (async () => {
+        const getApi = await fakeApi(userId)
+          .then((result) => {
+            setUserId(result);
+          })
+          .catch((err) => {
+            setUserId(1);
+          });
+
+        setDoRequest(false);
+      })();
+    } catch {
+      setDoRequest(false);
     }
   }, [doRequest, userId]);
 
   const startFetchId = () => {
-    setDoRequest((prevState) => !prevState);
+    if (doRequest) {
+      setDoRequest(false);
+    } else {
+      setDoRequest(true);
+    }
   };
 
   return (
