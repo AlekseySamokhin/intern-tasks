@@ -1,4 +1,4 @@
-import "./App.css";
+import './App.css';
 import Task1 from './components/Task1';
 import Task2 from './components/Task2';
 import Task3 from './components/Task3';
@@ -10,16 +10,16 @@ import Task8 from './components/Task8';
 
 function App() {
   return (
-    <div>
+    <>
       {/* <Task1 /> */}
       {/* <Task2 /> */}
       {/* <Task3 /> */}
       {/* <Task4 /> */}
-      {/* <Task5 /> */}
+      <Task5 />
       {/* <Task6 /> */}
       {/* <Task7 /> */}
-      <Task8 />
-    </div>
+      {/* <Task8 /> */}
+    </>
   );
 }
 

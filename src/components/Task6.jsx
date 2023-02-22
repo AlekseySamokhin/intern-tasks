@@ -6,6 +6,7 @@ const Task6 = (props) => {
 
   useEffect(async () => {
     const res = await fakeApi(remoteId);
+    
     setRemoteId(res)
   }, []);
 
